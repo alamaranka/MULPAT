@@ -12,7 +12,7 @@ public class ASDASD {
 			if(i+_cNode<=_V-1){c[i][i+_cNode]=1;}
 			if(i-_cNode>=0){c[i][i-_cNode]=1;}
 		}
-		
+		int z = 0;
 		for(int i=0; i<_V; i++){
 			System.out.println();
 			for(int j=0; j<_V; j++){
