@@ -7,6 +7,7 @@ public class Model{
 	
 	public int _s, _m, _n, _v, _ell, _w;
 	public double[][][] _solutionOfPatroller;
+	public double[][][] _solutionOfAdversary;
 	
 	public Model(int T, int Tp, int Ta, int L, int W, int ell, int w, int alpha){
 		_s = T*alpha*w/W; _m = _s*Tp/T; _n = _s*Ta/T;
@@ -145,7 +146,7 @@ public class Model{
 			for(int i=0; i<_v; i++){
 				for(int j=0; j<_v; j++){
 					for(int t=0; t<_s; t++){
-						expr.addTerm(wr*za[i][j][t]*c[i][j]+wc*tildeX[i][j][t]*c[i][j], x[i][j][t]);
+						expr.addTerm(wr*za[i][j][t]*c[i][j]-wc*tildeX[i][j][t]*c[i][j], x[i][j][t]);
 					}
 				}
 		}
