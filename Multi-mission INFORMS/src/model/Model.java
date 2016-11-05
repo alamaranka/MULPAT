@@ -1,23 +1,27 @@
 package model;
+import java.util.Random;
+
 import gurobi.*;
 
 public class Model{
 	
-	private int _theta, _m, _V, _rNode, _cNode;
-	private double[][][] _solutionOfPatroller;
+	public int _theta, _m, _V, _rNode, _cNode;
+	public double[][][] _solutionOfPatroller;
 	
 	public Model(int T, int Tp, int R, int r, int c, int v){
 		_theta = T*v*r/R; _m = _theta*Tp/T;
 		_V = (r+1)*(c+1); _rNode=r+1; _cNode=c+1;
 	}
 	
-	public void solve(int sp, double[][][] z, double [][][] tildeX, double wn, double ws){
+	public void solve(int sp, double[][][] z, double wn, double ws){
 		try{
 		//preliminary calculations
 		int constNum = 0; int temp= 0; int [] Kp = {_rNode};
 		for(int i=0; i<_rNode; i++){
 			Kp[i]=temp; temp+=_rNode;
 		}
+		//random adversary action estimate
+		double [][][] tildeX = estimateTildeX();
 		//distance matrix
 		double [][] c = getDistanceMatrix();
 		//model
@@ -113,8 +117,7 @@ public class Model{
 	
 	public double[][] getDistanceMatrix(){
 		int jcol=_cNode-1; int jrow=_rNode-1;
-		double [][] c = new double [_V][_V];
-		
+		double [][] c = new double [_V][_V];		
 		for(int i=0; i<_V; i++){
 			if(i%_cNode!=0){c[i][i-1]=1;}
 			if(i%_cNode!=jcol){c[i][i+1]=1;}
@@ -129,5 +132,28 @@ public class Model{
 			}
 		}
 		return c;
+	}
+	
+	public double[][][] estimateTildeX(){
+		Random rand = new Random(); 
+		double sum = 0;
+		double [][][] tildeX = new double [_V][_V][_theta];
+		for(int i=0; i<_V; i++){
+			for(int j=0; j<_V; j++){
+				for(int t=0; t<_theta; t++){
+					double r = rand.nextDouble();
+					tildeX[i][j][t]=r;
+					sum += r;
+				}
+			}
+		}
+		for(int i=0; i<_V; i++){
+			for(int j=0; j<_V; j++){
+				for(int t=0; t<_theta; t++){
+					tildeX[i][j][t] /=sum;
+				}
+			}
+		}
+		return tildeX;
 	}
 }
