@@ -121,16 +121,13 @@ public class Model{
 			if(i<_cNode*jrow){c[i][i+_cNode]=1;}
 			if(i>jcol){c[i][i-_cNode]=1;}
 		}
-		
 		for(int i=0; i<_V; i++){
 			for(int j=0; j<_V; j++){
 				if(c[i][j]!=1){
-					c[i][j]=0;
+					c[i][j]=-Double.MAX_VALUE;
 				}
 			}
 		}
 		return c;
 	}
-	
-	
 }
