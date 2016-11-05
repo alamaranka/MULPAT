@@ -5,7 +5,6 @@ public class Model{
 	
 	private int _theta, _m, _V, _rNode, _cNode;
 	private double[][][] _solutionOfPatroller;
-	private double[][] _c;
 	
 	public Model(int T, int Tp, int R, int r, int c, int v){
 		_theta = T*v*r/R; _m = _theta*Tp/T;
@@ -20,7 +19,7 @@ public class Model{
 			Kp[i]=temp; temp+=_rNode;
 		}
 		//distance matrix
-		
+		double [][] c = getDistanceMatrix();
 		//model
 		GRBEnv env   = new GRBEnv("Patrol");
 		GRBModel model = new GRBModel(env);    
@@ -40,7 +39,7 @@ public class Model{
 			for(int i=0; i<_V; i++){
 				for(int j=0; j<_V; j++){
 					for(int t=0; t<_theta; t++){
-						expr.addTerm(wn*z[i][j][t]*_c[i][j]+ws*tildeX[i][j][t]*_c[i][j], x[i][j][t]);
+						expr.addTerm(wn*z[i][j][t]*c[i][j]+ws*tildeX[i][j][t]*c[i][j], x[i][j][t]);
 					}
 				}
 		}
