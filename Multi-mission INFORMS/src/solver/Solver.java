@@ -16,9 +16,13 @@ public class Solver {
 	public static double wc = 1-wr;
 	
 	public static void main(String args[]){
+		//preliminaries
 		model.Model model = new model.Model(T, Tp, Ta, L, W, ell, w, alpha);
+		data.Data data = new data.Data(model._v, model._s);
+		double [][][] zp = data.getZP();
+		//solve patroller's problem
 		for(int i=0; i<model._s-model._m; i++){
-			//model.solve(i, zp, wn, ws);
+			model.solvePatroller(i, zp, wn, ws);
 		}
 	}
 }
