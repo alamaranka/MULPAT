@@ -13,7 +13,7 @@ public class Model{
 		_v = w*ell; _ell = ell; _w = w;
 		_s = T*alpha*w/W; 
 		_m = _s*Tp/T; 
-		_n = _s*Ta/T;
+		_n = _s*Ta/T; //
 	}
 	
 	public void solvePatroller(int sp, double[][][] zp, double wn, double ws){
