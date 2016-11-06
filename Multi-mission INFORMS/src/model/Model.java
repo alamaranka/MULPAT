@@ -53,7 +53,7 @@ public class Model{
 		model.setObjective(expr, GRB.MAXIMIZE);
 		//constraints
 		//moving only once at time t
-		for(int t=sp-1; t<sp+_m; t++){
+		for(int t=sp; t<sp+_m-1; t++){
 			GRBLinExpr expr1 = new GRBLinExpr();
 			for(int i=0; i<_v; i++){
 				for(int j=0; j<_v; j++){	
