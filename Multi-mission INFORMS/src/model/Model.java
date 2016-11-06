@@ -125,7 +125,7 @@ public class Model{
 		for(int i=0; i<_w; i++){
 			Ka[i]=temp; temp+=_w;
 		}
-		//random adversary action estimate
+		//random patroller action estimate
 		double [][][] tildeX = estimateTildeX();
 		//distance matrix
 		double [][] c = getDistanceMatrixOfAdversary();
