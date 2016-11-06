@@ -19,8 +19,8 @@ public class Model{
 	public void solvePatroller(int sp, double[][][] zp, double wn, double ws){
 		try{
 		//preliminary calculations
-		int constNum = 0; int temp= 0; int [] Kp = {_ell};
-		for(int i=0; i<_w; i++){
+		int constNum = 0; int temp= 0; int [] Kp = new int[_ell];
+		for(int i=0; i<_ell; i++){
 			Kp[i]=temp; temp+=_w;
 		}
 		//random adversary action estimate
@@ -36,8 +36,8 @@ public class Model{
 			for(int j=0; j<_v; j++){
 				for(int t=0; t<_s; t++){
 					String s = "x"+i+j+t;
-					x[i][j][t] = model.addVar(0.0, 1.0, 0.0, GRB.BINARY,s);
-				}
+					x[i][j][t] = model.addVar(0.0, 1.0, 0.0, GRB.BINARY, s);
+				} 
 			}
 		}	
 		model.update();
@@ -53,10 +53,10 @@ public class Model{
 		model.setObjective(expr, GRB.MAXIMIZE);
 		//constraints
 		//moving only once at time t
-		for(int t=0; t<_s; t++){
+		for(int t=sp-1; t<sp+_m; t++){
 			GRBLinExpr expr1 = new GRBLinExpr();
-			for(int i=0; i<_s; i++){
-				for(int j=0; j<_s; j++){
+			for(int i=0; i<_v; i++){
+				for(int j=0; j<_v; j++){	
 					expr1.addTerm(1.0, x[i][j][t]);
 				}
 			}	
@@ -64,7 +64,7 @@ public class Model{
 			model.addConstr(expr1, GRB.EQUAL, 1.0, s1);
 			constNum++;
 		}
-		//starting from certain nodes
+		//starting from certain nodes		
 		GRBLinExpr expr2 = new GRBLinExpr();
 		for(int k: Kp){
 			for(int j=0; j<_v; j++){	
@@ -73,7 +73,7 @@ public class Model{
 				model.addConstr(expr2, GRB.EQUAL, 1.0, s2);
 				constNum++;
 			}
-		}
+		}		
 		//ending at certain nodes
 		GRBLinExpr expr3 = new GRBLinExpr();
 		for(int i=0; i<_v; i++){
@@ -90,14 +90,15 @@ public class Model{
 				for(int t=0; t<_s; t++){
 					if(t<sp-1 || t>sp+_m-1){
 						GRBLinExpr expr4 = new GRBLinExpr();
-						expr4.addTerm(0.0, x[i][j][t]);
+						expr4.addTerm(1.0, x[i][j][t]);
 						String s4 = "c"+constNum;
-						model.addConstr(expr4, GRB.EQUAL, 1.0, s4);
+						model.addConstr(expr4, GRB.EQUAL, 0.0, s4);
 						constNum++;
 					}
 				}
 			}
 		}
+		
 		//solve
 		model.optimize();
 		//solution
@@ -108,7 +109,17 @@ public class Model{
 					_solutionOfPatroller[i][j][t] = x[i][j][t].get(GRB.DoubleAttr.X);
 				}
 			}
-		}	
+		}
+		//
+		for(int t=0; t<_s; t++){
+			for(int i=0; i<_v; i++){
+				for(int j=0; j<_v; j++){
+					if(x[i][j][t].get(GRB.DoubleAttr.X)>0){
+						System.out.println(i+" "+j+" "+t);
+					}
+				}
+			}
+		}
 		//end
 		model.dispose();
 		env.dispose();	
@@ -122,7 +133,7 @@ public class Model{
 		try{
 		//preliminary calculations
 		int constNum = 0; int temp= _w-1; int [] Ka = {_ell};
-		for(int i=0; i<_w; i++){
+		for(int i=0; i<_ell; i++){
 			Ka[i]=temp; temp+=_w;
 		}
 		//random patroller action estimate
@@ -163,7 +174,7 @@ public class Model{
 				}
 			}	
 			String s1 = "c"+constNum;
-			model.addConstr(expr1, GRB.EQUAL, 1.0, s1);
+			model.addConstr(expr1, GRB.LESS_EQUAL, 1.0, s1);
 			constNum++;
 		}
 		//starting from certain nodes
@@ -172,7 +183,7 @@ public class Model{
 			for(int j=0; j<_v; j++){	
 				expr2.addTerm(1.0, x[k][j][sa]);
 				String s2 = "c"+constNum;
-				model.addConstr(expr2, GRB.EQUAL, 1.0, s2);
+				model.addConstr(expr2, GRB.LESS_EQUAL, 1.0, s2);
 				constNum++;
 			}
 		}
@@ -182,19 +193,19 @@ public class Model{
 			for(int k: Ka){	
 				expr3.addTerm(1.0, x[i][k][sa+_n]);
 				String s3 = "c"+constNum;
-				model.addConstr(expr3, GRB.EQUAL, 1.0, s3);
+				model.addConstr(expr3, GRB.LESS_EQUAL, 1.0, s3);
 				constNum++;
 			}
 		}
-		//setting off-patrol variables to zero
+		//setting off-move variables to zero
 		for(int i=0; i<_v; i++){
 			for(int j=0; j<_v; j++){
 				for(int t=0; t<_s; t++){
 					if(t<sa-1 || t>sa+_n-1){
 						GRBLinExpr expr4 = new GRBLinExpr();
-						expr4.addTerm(0.0, x[i][j][t]);
+						expr4.addTerm(1.0, x[i][j][t]);
 						String s4 = "c"+constNum;
-						model.addConstr(expr4, GRB.EQUAL, 1.0, s4);
+						model.addConstr(expr4, GRB.EQUAL, 0.0, s4);
 						constNum++;
 					}
 				}
@@ -203,11 +214,11 @@ public class Model{
 		//solve
 		model.optimize();
 		//solution
-		_solutionOfPatroller = new double[_v][_v][_s];
+		_solutionOfAdversary = new double[_v][_v][_s];
 		for(int i=0; i<_v; i++){
 			for(int j=0; j<_v; j++){
 				for(int t=0; t<_s; t++){
-					_solutionOfPatroller[i][j][t] = x[i][j][t].get(GRB.DoubleAttr.X);
+					_solutionOfAdversary[i][j][t] = x[i][j][t].get(GRB.DoubleAttr.X);
 				}
 			}
 		}	

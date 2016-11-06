@@ -1,0 +1,818 @@
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:08:22
+
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:09:04
+
+Optimize a model with 28435 rows, 37500 columns and 53250 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 0 rows and 998 columns
+Presolve time: 0.18s
+
+Explored 0 nodes (0 simplex iterations) in 0.46 seconds
+Thread count was 1 (of 4 available processors)
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:16:32
+
+Optimize a model with 310 rows, 37500 columns and 53250 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-09, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 310 rows and 37500 columns
+Presolve time: 0.45s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.46 seconds
+Thread count was 1 (of 4 available processors)
+
+Model objective exceeds cutoff
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:17:03
+
+Optimize a model with 60 rows, 37500 columns and 37500 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 60 rows and 37500 columns
+Presolve time: 0.33s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.35 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.005865852677e-01, best bound 1.005865852677e-01, gap 0.0%
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:17:56
+
+Optimize a model with 28185 rows, 37500 columns and 37500 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve time: 0.22s
+
+Explored 0 nodes (0 simplex iterations) in 0.37 seconds
+Thread count was 1 (of 4 available processors)
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:18:48
+
+Optimize a model with 60 rows, 37500 columns and 37500 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [6e-09, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 60 rows and 37500 columns
+Presolve time: 0.33s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.35 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.005588331118e-01, best bound 1.005588331118e-01, gap 0.0%
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:19:11
+
+Optimize a model with 185 rows, 37500 columns and 45375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [4e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 185 rows and 37500 columns
+Presolve time: 0.51s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.51 seconds
+Thread count was 1 (of 4 available processors)
+
+Model objective exceeds cutoff
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:24:45
+
+Optimize a model with 185 rows, 37500 columns and 45375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [6e-09, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 185 rows and 37500 columns
+Presolve time: 0.39s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.42 seconds
+Thread count was 1 (of 4 available processors)
+
+Model objective exceeds cutoff
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:26:44
+
+Optimize a model with 185 rows, 37500 columns and 45375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [3e-09, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 185 rows and 37500 columns
+Presolve time: 0.59s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.61 seconds
+Thread count was 1 (of 4 available processors)
+
+Model objective exceeds cutoff
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:28:11
+
+Optimize a model with 185 rows, 37500 columns and 45375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [4e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 185 rows and 37500 columns
+Presolve time: 0.56s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.57 seconds
+Thread count was 1 (of 4 available processors)
+
+Model objective exceeds cutoff
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:28:13
+
+Optimize a model with 185 rows, 37500 columns and 45375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-09, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 185 rows and 37500 columns
+Presolve time: 0.45s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.46 seconds
+Thread count was 1 (of 4 available processors)
+
+Model objective exceeds cutoff
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:28:15
+
+Optimize a model with 185 rows, 37500 columns and 45375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 185 rows and 37500 columns
+Presolve time: 0.45s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.47 seconds
+Thread count was 1 (of 4 available processors)
+
+Model objective exceeds cutoff
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:29:22
+
+Optimize a model with 185 rows, 37500 columns and 45375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 185 rows and 37500 columns
+Presolve time: 0.48s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.49 seconds
+Thread count was 1 (of 4 available processors)
+
+Model objective exceeds cutoff
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:29:25
+
+Optimize a model with 185 rows, 37500 columns and 45375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 185 rows and 37500 columns
+Presolve time: 0.49s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.51 seconds
+Thread count was 1 (of 4 available processors)
+
+Model objective exceeds cutoff
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:31:01
+
+Optimize a model with 28185 rows, 37500 columns and 37500 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [5e-09, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve time: 0.25s
+
+Explored 0 nodes (0 simplex iterations) in 0.39 seconds
+Thread count was 1 (of 4 available processors)
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:31:03
+
+Optimize a model with 28185 rows, 37500 columns and 37500 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [8e-09, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve time: 0.21s
+
+Explored 0 nodes (0 simplex iterations) in 0.35 seconds
+Thread count was 1 (of 4 available processors)
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:31:53
+
+Optimize a model with 28185 rows, 37500 columns and 65625 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 0 rows and 28125 columns
+Presolve time: 0.11s
+
+Explored 0 nodes (0 simplex iterations) in 0.25 seconds
+Thread count was 1 (of 4 available processors)
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:31:55
+
+Optimize a model with 28185 rows, 37500 columns and 65625 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [4e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 0 rows and 28125 columns
+Presolve time: 0.13s
+
+Explored 0 nodes (0 simplex iterations) in 0.27 seconds
+Thread count was 1 (of 4 available processors)
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:31:57
+
+Optimize a model with 28185 rows, 37500 columns and 65625 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 0 rows and 28125 columns
+Presolve time: 0.12s
+
+Explored 0 nodes (0 simplex iterations) in 0.30 seconds
+Thread count was 1 (of 4 available processors)
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:38:42
+
+Optimize a model with 28185 rows, 37500 columns and 65625 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [9e-09, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective 0.000284434
+Presolve removed 28185 rows and 37500 columns
+Presolve time: 0.05s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.06 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.616836518449e-02, best bound 1.616836518449e-02, gap 0.0%
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:39:30
+
+Optimize a model with 28310 rows, 37500 columns and 73500 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 28310 rows and 37500 columns
+Presolve time: 0.05s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.06 seconds
+Thread count was 1 (of 4 available processors)
+
+Model objective exceeds cutoff
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:39:39
+
+Optimize a model with 28310 rows, 37500 columns and 73500 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 28310 rows and 37500 columns
+Presolve time: 0.04s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.05 seconds
+Thread count was 1 (of 4 available processors)
+
+Model objective exceeds cutoff
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:40:09
+
+Optimize a model with 28310 rows, 37500 columns and 73500 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [5e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective 0.000397953
+Presolve removed 28310 rows and 37500 columns
+Presolve time: 0.07s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.08 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.613306654356e-02, best bound 1.613306654356e-02, gap 0.0%
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:40:14
+
+Optimize a model with 28310 rows, 37500 columns and 73500 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective 0.0003172
+Presolve removed 28310 rows and 37500 columns
+Presolve time: 0.05s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.07 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.615892560236e-02, best bound 1.615892560236e-02, gap 0.0%
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:40:29
+
+Optimize a model with 28435 rows, 37500 columns and 81375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [9e-09, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective 0.000272012
+Presolve removed 28435 rows and 37500 columns
+Presolve time: 0.04s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.07 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.617755893961e-02, best bound 1.617755893961e-02, gap 0.0%
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:40:33
+
+Optimize a model with 28435 rows, 37500 columns and 81375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e-09, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective 0.000294826
+Presolve removed 28435 rows and 37500 columns
+Presolve time: 0.04s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.05 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.616365768293e-02, best bound 1.616365768293e-02, gap 0.0%
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:40:36
+
+Optimize a model with 28435 rows, 37500 columns and 81375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [3e-10, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective 0.000333553
+Presolve removed 28435 rows and 37500 columns
+Presolve time: 0.04s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.06 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.617741942977e-02, best bound 1.617741942977e-02, gap 0.0%
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:52:48
+
+Optimize a model with 28435 rows, 37500 columns and 81375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective 0.000347203
+Presolve removed 28435 rows and 37500 columns
+Presolve time: 0.07s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.08 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.615632016994e-02, best bound 1.615632016994e-02, gap 0.0%
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:53:11
+
+Optimize a model with 28435 rows, 37500 columns and 81375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective 0.00027312
+Presolve removed 28435 rows and 37500 columns
+Presolve time: 0.04s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.05 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.613655961100e-02, best bound 1.613655961100e-02, gap 0.0%
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:56:25
+
+Optimize a model with 28435 rows, 37500 columns and 81375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [5e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective 0.000377256
+Presolve removed 28435 rows and 37500 columns
+Presolve time: 0.05s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.06 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 3.761734561581e-03, best bound 3.761734561581e-03, gap 0.0%
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:56:37
+
+Optimize a model with 28435 rows, 37500 columns and 81375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [4e-10, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective 0.000322234
+Presolve removed 28435 rows and 37500 columns
+Presolve time: 0.05s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.06 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 7.874955667194e-04, best bound 7.874955667194e-04, gap 0.0%
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 16:57:21
+
+Optimize a model with 28435 rows, 37500 columns and 81375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [8e-09, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective 0.000194068
+Presolve removed 28435 rows and 37500 columns
+Presolve time: 0.05s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.06 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.615213688144e-02, best bound 1.615213688144e-02, gap 0.0%
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 17:01:13
+
+Optimize a model with 28435 rows, 37500 columns and 81375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Found heuristic solution: objective 0.000375181
+Presolve removed 28435 rows and 37500 columns
+Presolve time: 0.04s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.06 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 7.895292653013e-04, best bound 7.895292653013e-04, gap 0.0%
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 17:06:37
+
+Optimize a model with 28435 rows, 37500 columns and 81375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [7e-09, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 28435 rows and 37500 columns
+Presolve time: 0.05s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.06 seconds
+Thread count was 1 (of 4 available processors)
+
+Model objective exceeds cutoff
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 17:08:59
+
+Optimize a model with 28435 rows, 37500 columns and 72000 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 0 rows and 9250 columns
+Presolve time: 0.01s
+
+Explored 0 nodes (0 simplex iterations) in 0.29 seconds
+Thread count was 1 (of 4 available processors)
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 17:09:05
+
+Optimize a model with 28435 rows, 37500 columns and 72000 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 0 rows and 9250 columns
+Presolve time: 0.01s
+
+Explored 0 nodes (0 simplex iterations) in 0.28 seconds
+Thread count was 1 (of 4 available processors)
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 17:09:26
+
+Optimize a model with 28435 rows, 37500 columns and 81375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [4e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 0 rows and 499 columns
+Presolve time: 0.05s
+
+Explored 0 nodes (0 simplex iterations) in 0.37 seconds
+Thread count was 1 (of 4 available processors)
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 17:09:29
+
+Optimize a model with 28435 rows, 37500 columns and 81375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 0 rows and 499 columns
+Presolve time: 0.05s
+
+Explored 0 nodes (0 simplex iterations) in 0.37 seconds
+Thread count was 1 (of 4 available processors)
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 17:10:14
+
+Optimize a model with 28435 rows, 37500 columns and 81375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [2e-08, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 0 rows and 499 columns
+Presolve time: 0.05s
+
+Explored 0 nodes (0 simplex iterations) in 0.35 seconds
+Thread count was 1 (of 4 available processors)
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+Gurobi 6.5.2 (win64) logging started 11/06/16 17:10:22
+
+Optimize a model with 28435 rows, 37500 columns and 81375 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [7e-09, 1e+100]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve removed 0 rows and 499 columns
+Presolve time: 0.05s
+
+Explored 0 nodes (0 simplex iterations) in 0.35 seconds
+Thread count was 1 (of 4 available processors)
+
+Model is infeasible
+Best objective -, best bound -, gap -

@@ -42,9 +42,9 @@ public class Data {
 		}
 		// calculate z
 		int sum = 0;
-		for (int t=0; t<=_s; t++){
-			for (int i=0; i<=_v; i++){
-				for (int j=0; j<=_v; j++){
+		for (int t=0; t<_s; t++){
+			for (int i=0; i<_v; i++){
+				for (int j=0; j<_v; j++){
 					z[i][j][t] = ((t<=_s*1/3)?1:0)*average[i][j]/3 //low probability in first 1/3 of day (12AM to 8AM)
 							+ ((t>_s*1/3 & t<=_s*2/3)? 1:0)*average[i][j]/2 //medium probability in second 1/3rd of day (8AM to 4PM)
 							+ ((t>_s*2/3 & t<=_s*5/6)? 1:0)*average[i][j] //high probability in the next 1/6th of day (4PM to 8PM)
@@ -54,9 +54,9 @@ public class Data {
 			}
 		}
 		// normalize z
-		for (int t=0; t<=_s; t++){
-			for (int i=0; i<=_v; i++){
-				for (int j=0; j<=_v; j++){
+		for (int t=0; t<_s; t++){
+			for (int i=0; i<_v; i++){
+				for (int j=0; j<_v; j++){
 					z[i][j][t] /= sum;
 				}
 			}
