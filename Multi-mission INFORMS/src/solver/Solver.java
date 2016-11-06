@@ -16,7 +16,7 @@ public class Solver {
 	public static double wc = 1-wr;
 	
 	public static void main(String args[]){
-		//preliminaries
+		//preliminariess
 		model.Model model = new model.Model(T, Tp, Ta, L, W, ell, w, alpha);
 		data.Data data = new data.Data(model._v, model._s);
 		double [][][] zp = data.getZP();
