@@ -1,22 +1,27 @@
 package data;
 
 public class Data {
-	int nRow = 3;
-	int nCol = 3;
-	int totalNodes = nRow*nCol;
-	int totalTime = 10;
-	double probUpper = 1.00;
-	double probLower = 0.10; 
-	double[][][] z = new double[totalNodes][totalNodes][totalTime];
 	
-	public double[][][] createRescueData(){
-		double[] probMat = new double[totalNodes];
-		double diff = (probUpper - probLower)/(nCol - 1);
-		for (int node=0; node < totalNodes; node++) {
-			if (node%nCol == 0){
+	private int _v;
+	private int _s;
+	int _ell;
+	int _w; 
+	
+	public Data(int v, int s, int ell, int w){
+		_v=v; _s=s; _ell=ell; _w=w;
+	}
+	
+	public double[][][] getZP(){
+		double [][][] z = new double[_v][_v][_s];
+		double probUpper = 1.00;
+		double probLower = 0.10;
+		double[] probMat = new double[_v];
+		double diff = (probUpper - probLower)/(_w - 1);
+		for (int node=0; node < _v; node++) {
+			if (node%_w == 0){
 				probMat[node] = probUpper;
 			}
-			else if (node%nCol < nCol-1){
+			else if (node%_w < _w-1){
 				probMat[node] = probMat[node-1] - diff;
 			}
 			else {
@@ -24,10 +29,10 @@ public class Data {
 			}
 		}
 		// calculating average probabilities
-		double[][] average = new double[totalNodes][totalNodes];
-		for (int i = 0; i < totalNodes; i++){
-			for (int j = 0; j < totalNodes; j++){
-				if ((Math.abs(i-j)==1 & ((i+j)%nCol == nCol-1)) | Math.abs(i-j)==nCol){
+		double[][] average = new double[_v][_v];
+		for (int i = 0; i < _v; i++){
+			for (int j = 0; j < _v; j++){
+				if ((Math.abs(i-j)==1 & ((i+j)%_w == _w-1)) | Math.abs(i-j)==_w){
 					average[i][j] = (probMat[i] + probMat[j])/2;
 				}
 				else {
@@ -37,25 +42,31 @@ public class Data {
 		}
 		// calculate z
 		int sum = 0;
-		for (int t=0; t<=totalTime; t++){
-			for (int i=0; i<=totalNodes; i++){
-				for (int j=0; j<=totalNodes; j++){
-					z[i][j][t] = ((t<=totalTime*1/3)?1:0)*average[i][j]/3 //low probability in first 1/3 of day (12AM to 8AM)
-							+ ((t>totalTime*1/3 & t<=totalTime*2/3)? 1:0)*average[i][j]/2 //medium probability in second 1/3rd of day (8AM to 4PM)
-							+ ((t>totalTime*2/3 & t<=totalTime*5/6)? 1:0)*average[i][j] //high probability in the next 1/6th of day (4PM to 8PM)
-							+ ((t>totalTime*5/6)? 1:0)*average[i][j]/2; //medium probability in the next 1/6th of day (8PM to 12AM)
+		for (int t=0; t<=_s; t++){
+			for (int i=0; i<=_v; i++){
+				for (int j=0; j<=_v; j++){
+					z[i][j][t] = ((t<=_s*1/3)?1:0)*average[i][j]/3 //low probability in first 1/3 of day (12AM to 8AM)
+							+ ((t>_s*1/3 & t<=_s*2/3)? 1:0)*average[i][j]/2 //medium probability in second 1/3rd of day (8AM to 4PM)
+							+ ((t>_s*2/3 & t<=_s*5/6)? 1:0)*average[i][j] //high probability in the next 1/6th of day (4PM to 8PM)
+							+ ((t>_s*5/6)? 1:0)*average[i][j]/2; //medium probability in the next 1/6th of day (8PM to 12AM)
 					sum += z[i][j][t];
 				}
 			}
 		}
 		// normalize z
-		for (int t=0; t<=totalTime; t++){
-			for (int i=0; i<=totalNodes; i++){
-				for (int j=0; j<=totalNodes; j++){
+		for (int t=0; t<=_s; t++){
+			for (int i=0; i<=_v; i++){
+				for (int j=0; j<=_v; j++){
 					z[i][j][t] /= sum;
 				}
 			}
 		}
+		return z;
+	}
+
+	public double[][][] getZA(){
+		double [][][] z = new double[_v][_v][_s];
+	
 		return z;
 	}
 }
