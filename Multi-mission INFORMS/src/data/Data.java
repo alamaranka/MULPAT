@@ -4,8 +4,8 @@ public class Data {
 	
 	private int _v;
 	private int _s;
-	int _ell;
-	int _w; 
+	private int _ell;
+	private int _w; 
 	
 	public Data(int v, int s, int ell, int w){
 		_v=v; _s=s; _ell=ell; _w=w;
