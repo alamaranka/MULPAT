@@ -108,8 +108,9 @@ public class Model{
 				}
 			}
 		}
+		
 		//sub-tour elimination
-		for(int t=sp; t<sp+_m+1; t++){
+		for(int t=sp; t<sp+_m; t++){
 			for(int i=0; i<_v; i++){
 				for(int j=0; j<_v; j++){
 					ArrayList<Integer> neighbors = getNeighbors(j);
@@ -124,6 +125,7 @@ public class Model{
 				}
 			}
 		}
+		
 		//solve
 		model.optimize();
 		//solution
