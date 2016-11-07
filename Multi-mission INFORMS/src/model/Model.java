@@ -53,7 +53,7 @@ public class Model{
 		model.setObjective(expr, GRB.MAXIMIZE);
 		//constraints
 		//moving only once at time t
-		for(int t=sp; t<sp+_m-1; t++){
+		for(int t=sp; t<sp+_m+1; t++){
 			GRBLinExpr expr1 = new GRBLinExpr();
 			for(int i=0; i<_v; i++){
 				for(int j=0; j<_v; j++){	
@@ -69,26 +69,27 @@ public class Model{
 		for(int k: Kp){
 			for(int j=0; j<_v; j++){	
 				expr2.addTerm(1.0, x[k][j][sp]);
-				String s2 = "c"+constNum;
-				model.addConstr(expr2, GRB.EQUAL, 1.0, s2);
-				constNum++;
 			}
-		}		
+		}
+		String s2 = "c"+constNum;
+		model.addConstr(expr2, GRB.EQUAL, 1.0, s2);
+		constNum++;	
 		//ending at certain nodes
 		GRBLinExpr expr3 = new GRBLinExpr();
 		for(int i=0; i<_v; i++){
 			for(int k: Kp){	
 				expr3.addTerm(1.0, x[i][k][sp+_m]);
-				String s3 = "c"+constNum;
-				model.addConstr(expr3, GRB.EQUAL, 1.0, s3);
-				constNum++;
+				
 			}
 		}
+		String s3 = "c"+constNum;
+		model.addConstr(expr3, GRB.EQUAL, 1.0, s3);
+		constNum++;
 		//setting off-patrol variables to zero
 		for(int i=0; i<_v; i++){
 			for(int j=0; j<_v; j++){
 				for(int t=0; t<_s; t++){
-					if(t<sp-1 || t>sp+_m-1){
+					if(t<sp || t>sp+_m){
 						GRBLinExpr expr4 = new GRBLinExpr();
 						expr4.addTerm(1.0, x[i][j][t]);
 						String s4 = "c"+constNum;
@@ -97,8 +98,7 @@ public class Model{
 					}
 				}
 			}
-		}
-		
+		}	
 		//solve
 		model.optimize();
 		//solution
