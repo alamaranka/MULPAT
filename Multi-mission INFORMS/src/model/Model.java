@@ -1,4 +1,5 @@
 package model;
+import java.util.ArrayList;
 import java.util.Random;
 
 import gurobi.*;
@@ -8,12 +9,14 @@ public class Model{
 	public int _s, _m, _n, _v, _ell, _w;
 	public double[][][] _solutionOfPatroller;
 	public double[][][] _solutionOfAdversary;
+	public int _jcol, _jrow;
 	
 	public Model(int T, int Tp, int Ta, int L, int W, int ell, int w, int alpha){
 		_v = w*ell; _ell = ell; _w = w;
 		_s = T*alpha*w/W; 
 		_m = _s*Tp/T; 
 		_n = _s*Ta/T; 
+		_jcol=_w-1; _jrow=_ell-1;
 	}
 	
 	public void solvePatroller(int sp, double[][][] zp, double wn, double ws){
@@ -35,11 +38,17 @@ public class Model{
 		for(int i=0; i<_v; i++){
 			for(int j=0; j<_v; j++){
 				for(int t=0; t<_s; t++){
-					String s = "x"+i+j+t;
-					x[i][j][t] = model.addVar(0.0, 1.0, 0.0, GRB.BINARY, s);
+					String sx = "x"+i+j+t;
+					x[i][j][t] = model.addVar(0.0, 1.0, 0.0, GRB.BINARY, sx);
 				} 
 			}
-		}	
+		}
+		//
+		GRBVar[] u = new GRBVar[_v];
+		for(int i=0; i<_v; i++){
+			String su = "u"+i;
+			u[i] = model.addVar(0.0, Double.MAX_VALUE, 0.0, GRB.CONTINUOUS, su);
+		}
 		model.update();
 		//objective function
 		GRBLinExpr expr = new GRBLinExpr();
@@ -98,7 +107,23 @@ public class Model{
 					}
 				}
 			}
-		}	
+		}
+		//sub-tour elimination
+		for(int t=sp; t<sp+_m+1; t++){
+			for(int i=0; i<_v; i++){
+				for(int j=0; j<_v; j++){
+					ArrayList<Integer> neighbors = getNeighbors(j);
+					GRBLinExpr expr5 = new GRBLinExpr();
+					for(int n: neighbors){
+						expr5.addTerm(1.0, x[j][n][t+1]);
+					}
+					expr5.addTerm(-1.0, x[i][j][t]);
+					String s5 = "c"+constNum;
+					model.addConstr(expr5, GRB.GREATER_EQUAL, 0.0, s5);
+					constNum++;
+				}
+			}
+		}
 		//solve
 		model.optimize();
 		//solution
@@ -232,13 +257,12 @@ public class Model{
 	}
 	
 	public double[][] getDistanceMatrixOfPatroller(){
-		int jcol=_w-1; int jrow=_ell-1;
 		double [][] c = new double [_v][_v];		
 		for(int i=0; i<_v; i++){
 			if(i%_w!=0){c[i][i-1]=1;}
-			if(i%_w!=jcol){c[i][i+1]=1;}
-			if(i<_w*jrow){c[i][i+_w]=1;}
-			if(i>jcol){c[i][i-_w]=1;}
+			if(i%_w!=_jcol){c[i][i+1]=1;}
+			if(i<_w*_jrow){c[i][i+_w]=1;}
+			if(i>_jcol){c[i][i-_w]=1;}
 		}
 		for(int i=0; i<_v; i++){
 			for(int j=0; j<_v; j++){
@@ -294,4 +318,14 @@ public class Model{
 		}
 		return tildeX;
 	}
+
+	public ArrayList<Integer> getNeighbors(int v){
+		ArrayList<Integer> neighbors = new ArrayList<Integer>();
+		if(v%_w!=0){neighbors.add(v-1);}
+		if(v%_w!=_jcol){neighbors.add(v+1);}
+		if(v<_w*_jrow){neighbors.add(v+_w);}
+		if(v>_jcol){neighbors.add(v-_w);}
+		return neighbors;
+	}
+
 }
