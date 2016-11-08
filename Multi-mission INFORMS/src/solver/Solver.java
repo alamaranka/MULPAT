@@ -26,7 +26,7 @@ public class Solver {
 			model.solvePatroller(0, zp, wn, ws);
 		//}
 		//for(int i=0; i<model._s-model._n; i++){
-			//model.solveAdversary(0, za, wr, wc);
+			model.solveAdversary(0, za, wr, wc);
 		//}
 	}
 }
