@@ -18,26 +18,22 @@ public class Data {
 		double[] probMat = new double[_v];
 		double diff = (probUpper - probLower)/(_w - 1);
 		for (int node=0; node < _v; node++) {
-			if (node%_w == 0){
-				probMat[node] = probUpper;
+			if (node/_w == 0){
+				probMat[node] = probLower;	
 			}
-			else if (node%_w < _w-1){
-				probMat[node] = probMat[node-1] - diff;
+			else if (node/_w < _w-1){
+				probMat[node] = probMat[node-1] + diff;
 			}
 			else {
-				probMat[node] = probLower;
+				probMat[node] = probUpper;
 			}
 		}
 		// calculating average probabilities
 		double[][] average = new double[_v][_v];
+		double [][] c = getC();
 		for (int i = 0; i < _v; i++){
 			for (int j = 0; j < _v; j++){
-				if ((Math.abs(i-j)==1 & ((i+j)%_w == _w-1)) | Math.abs(i-j)==_w){
-					average[i][j] = (probMat[i] + probMat[j])/2;
-				}
-				else {
-					average[i][j] = 0;
-				}
+				average[i][j] = ((c[i][j]==1)?1:0)*(probMat[i] + probMat[j])/2;
 			}
 		}
 		// calculate z
@@ -98,7 +94,7 @@ public class Data {
 		for(int i=0; i<_v; i++){
 			for(int j=0; j<_v; j++){
 				if(c[i][j]!=1){
-					c[i][j]=-Double.MAX_VALUE;
+					c[i][j]=0.0;
 				}
 				if(i==j){
 					c[i][j]=1;

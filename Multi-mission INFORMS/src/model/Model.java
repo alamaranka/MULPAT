@@ -29,7 +29,7 @@ public class Model{
 		//random adversary action estimate
 		double [][][] tildeX = estimateTildeX();
 		//distance matrix
-		double [][] c = getDistanceMatrixOfPatroller();
+		//double [][] c = getDistanceMatrixOfPatroller();
 		//model
 		GRBEnv env   = new GRBEnv("Patrol");
 		GRBModel model = new GRBModel(env);    
@@ -49,7 +49,7 @@ public class Model{
 			for(int i=0; i<_v; i++){
 				for(int j=0; j<_v; j++){
 					for(int t=0; t<_s; t++){
-						expr.addTerm(wn*zp[i][j][t]*c[i][j]+ws*(tildeX[i][j][t]+tildeX[j][i][t])*c[i][j], x[i][j][t]);
+						expr.addTerm(wn*zp[i][j][t]+ws*(tildeX[i][j][t]+tildeX[j][i][t]), x[i][j][t]);
 					}
 				}
 		}
@@ -160,7 +160,7 @@ public class Model{
 			//random adversary action estimate
 			double [][][] tildeX = estimateTildeX();
 			//distance matrix
-			double [][] c = getDistanceMatrixOfAdversary();
+			
 			//model
 			GRBEnv env   = new GRBEnv("Incursion");
 			GRBModel model = new GRBModel(env);    
@@ -180,7 +180,7 @@ public class Model{
 				for(int i=0; i<_v; i++){
 					for(int j=0; j<_v; j++){
 						for(int t=0; t<_s; t++){
-							expr.addTerm(wr*za[i][j][t]*c[i][j]-wc*(tildeX[i][j][t]+tildeX[j][i][t])*c[i][j], x[i][j][t]);
+							expr.addTerm(wr*za[i][j][t]-wc*(tildeX[i][j][t]+tildeX[j][i][t]), x[i][j][t]);
 						}
 					}
 			}
@@ -239,6 +239,7 @@ public class Model{
 				for(int i=0; i<_v; i++){
 					for(int j=0; j<_v; j++){
 						ArrayList<Integer> neighbors = getNeighbors(j);
+						//neighbors.add(j);
 						GRBLinExpr expr5 = new GRBLinExpr();
 						for(int n: neighbors){
 							expr5.addTerm(1.0, x[j][n][t+1]);
@@ -281,6 +282,7 @@ public class Model{
 			}
 	}
 	
+	/*
 	public double[][] getDistanceMatrixOfPatroller(){
 		double [][] c = new double [_v][_v];		
 		for(int i=0; i<_v; i++){
@@ -299,6 +301,7 @@ public class Model{
 		return c;
 	}
 	
+	/*
 	public double[][] getDistanceMatrixOfAdversary(){
 		int jcol=_w-1; int jrow=_ell-1;
 		double [][] c = new double [_v][_v];		
@@ -309,6 +312,7 @@ public class Model{
 			if(i>jcol){c[i][i-_w]=1;}
 		}
 		for(int i=0; i<_v; i++){
+			System.out.println();
 			for(int j=0; j<_v; j++){
 				if(c[i][j]!=1){
 					c[i][j]=-Double.MAX_VALUE;
@@ -316,11 +320,12 @@ public class Model{
 				if(i==j){
 					c[i][j]=1;
 				}
+				System.out.print(c[i][j]+"\t");
 			}
 		}
 		return c;
 	}
-	
+	*/
 	public double[][][] estimateTildeX(){
 		Random rand = new Random(); 
 		double sum = 0;
