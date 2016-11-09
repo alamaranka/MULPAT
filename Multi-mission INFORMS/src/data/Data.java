@@ -1,5 +1,7 @@
 package data;
 
+import java.util.Random;
+
 public class Data {
 	
 	private int _v;
@@ -102,6 +104,29 @@ public class Data {
 			}
 		}
 		return c;
+	}
+	
+	public double[][][] estimateTildeX(){
+		Random rand = new Random(); 
+		double sum = 0;
+		double [][][] tildeX = new double [_v][_v][_s];
+		for(int i=0; i<_v; i++){
+			for(int j=0; j<_v; j++){
+				for(int t=0; t<_s; t++){
+					double r = rand.nextDouble();
+					tildeX[i][j][t]=r;
+					sum += r;
+				}
+			}
+		}
+		for(int i=0; i<_v; i++){
+			for(int j=0; j<_v; j++){
+				for(int t=0; t<_s; t++){
+					tildeX[i][j][t] /=sum;
+				}
+			}
+		}
+		return tildeX;
 	}
 	
 }

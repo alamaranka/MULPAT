@@ -19,44 +19,36 @@ public class Solver {
 	//
 	private ArrayList<int[]> _optimalPathOfPatroller;
 	private ArrayList<int[]> _optimalPathOfAdversary;
-	private int _spStar; private int _saStar;
 	
-	public void solve(){
-		//models
-		model.Model model = new model.Model(T, Tp, Ta, L, W, ell, w, alpha);
-		data.Data data = new data.Data(model._v, model._s, model._ell, model._w);
+	//models
+	model.Model _model = new model.Model(T, Tp, Ta, L, W, ell, w, alpha);
+	data.Data _data = new data.Data(_model._v, _model._s, _model._ell, _model._w);
+	
+	public void solve(double [][][] tildeXPatroller, double [][][] tildeXAdversary){	
 		//preliminaries
 		double optimalObjectivePatroller = -Double.MAX_VALUE;
 		double optimalObjectiveAdversary = -Double.MAX_VALUE;
 		_optimalPathOfPatroller = new ArrayList<int[]>(); 
 		_optimalPathOfAdversary = new ArrayList<int[]>(); 
-		_spStar = 0; _saStar = 0;
-		double [][][] zp = data.getZP();
-		double [][][] za = data.getZA();
+		double [][][] zp = _data.getZP();
+		double [][][] za = _data.getZA();
 		//solve patroller's problem
-		for(int i=0; i<model._s-model._m; i++){
-			model.solvePatroller(i, zp, wn, ws);
-			if(model._objectiveValueOfPatroller>optimalObjectivePatroller){
-				optimalObjectivePatroller=model._objectiveValueOfPatroller;
-				_spStar = i;
-				_optimalPathOfPatroller = model._solutionOfPatroller;
+		for(int i=0; i<_model._s-_model._m; i++){
+			_model.solvePatroller(i, zp, tildeXPatroller, wn, ws);
+			if(_model._objectiveValueOfPatroller>optimalObjectivePatroller){
+				optimalObjectivePatroller=_model._objectiveValueOfPatroller;
+				_optimalPathOfPatroller = _model._solutionOfPatroller;
 			}
 		}
-		for(int i=0; i<model._s-model._n; i++){
-			model.solveAdversary(i, za, wr, wc);
-			if(model._objectiveValueOfAdversary>optimalObjectiveAdversary){
-				optimalObjectiveAdversary=model._objectiveValueOfAdversary;
-				_saStar = i;
-				_optimalPathOfAdversary = model._solutionOfAdversary;
+		for(int i=0; i<_model._s-_model._n; i++){
+			_model.solveAdversary(i, za, tildeXAdversary, wr, wc);
+			if(_model._objectiveValueOfAdversary>optimalObjectiveAdversary){
+				optimalObjectiveAdversary=_model._objectiveValueOfAdversary;
+				_optimalPathOfAdversary = _model._solutionOfAdversary;
 			}
 		}
 		//printing results
-		System.out.println("The optimal path of the patroller:");
-		model.printOptimalPath(_optimalPathOfPatroller);
-		System.out.println("Optimal starting time to patrol: "+_spStar);
-		System.out.println("The optimal path of the adversary:");
-		model.printOptimalPath(_optimalPathOfAdversary);
-		System.out.println("Optimal starting time to incursion: "+_saStar);
+		//print();
 	}
 	
 	public ArrayList<int[]> getPatrollerPath(){
@@ -67,12 +59,11 @@ public class Solver {
 		return _optimalPathOfAdversary;
 	}
 	
-	public int getPatrollerTime(){
-		return _spStar;
-	}
-	
-	public int getAdversaryTime(){
-		return _saStar;
+	public void print(){
+		System.out.println("The optimal path of the patroller:");
+		_model.printOptimalPath(_optimalPathOfPatroller);
+		System.out.println("The optimal path of the adversary:");
+		_model.printOptimalPath(_optimalPathOfAdversary);
 	}
 	
 }

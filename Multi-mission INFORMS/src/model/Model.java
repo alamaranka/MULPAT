@@ -21,15 +21,13 @@ public class Model{
 		_jcol=_w-1; _jrow=_ell-1;
 	}
 	
-	public void solvePatroller(int sp, double[][][] zp, double wn, double ws){
+	public void solvePatroller(int sp, double[][][] zp, double [][][] tildeX, double wn, double ws){
 		try{
 		//preliminary calculations
 		int constNum = 0; int temp= 0; int [] Kp = new int[_ell];
 		for(int i=0; i<_ell; i++){
 			Kp[i]=temp; temp+=_w;
 		}
-		//random adversary action estimate
-		double [][][] tildeX = estimateTildeX();
 		//model
 		GRBEnv env   = new GRBEnv("Patrol");
 		GRBModel model = new GRBModel(env);    
@@ -149,17 +147,13 @@ public class Model{
 		}
 	}
 	
-	public void solveAdversary(int sa, double[][][] za, double wr, double wc){
+	public void solveAdversary(int sa, double[][][] za, double [][][] tildeX, double wr, double wc){
 		try{
 			//preliminary calculations
 			int constNum = 0; int temp= _w-1; int [] Ka = new int[_ell];
 			for(int i=0; i<_ell; i++){
 				Ka[i]=temp; temp+=_w;
-			}
-			//random adversary action estimate
-			double [][][] tildeX = estimateTildeX();
-			//distance matrix
-			
+			}		
 			//model
 			GRBEnv env   = new GRBEnv("Incursion");
 			GRBModel model = new GRBModel(env);    
@@ -280,29 +274,7 @@ public class Model{
 			}
 	}
 
-	public double[][][] estimateTildeX(){
-		Random rand = new Random(); 
-		double sum = 0;
-		double [][][] tildeX = new double [_v][_v][_s];
-		for(int i=0; i<_v; i++){
-			for(int j=0; j<_v; j++){
-				for(int t=0; t<_s; t++){
-					double r = rand.nextDouble();
-					tildeX[i][j][t]=r;
-					sum += r;
-				}
-			}
-		}
-		for(int i=0; i<_v; i++){
-			for(int j=0; j<_v; j++){
-				for(int t=0; t<_s; t++){
-					tildeX[i][j][t] /=sum;
-				}
-			}
-		}
-		return tildeX;
-	}
-
+	
 	public ArrayList<Integer> getNeighbors(int v){
 		ArrayList<Integer> neighbors = new ArrayList<Integer>();
 		if(v%_w!=0){neighbors.add(v-1);}
