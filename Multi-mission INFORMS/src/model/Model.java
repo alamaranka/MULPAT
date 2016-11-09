@@ -7,9 +7,11 @@ import gurobi.*;
 public class Model{
 	
 	public int _s, _m, _n, _v, _ell, _w;
-	public double[][][] _solutionOfPatroller;
-	public double[][][] _solutionOfAdversary;
+	public ArrayList<int[]> _solutionOfPatroller;
+	public ArrayList<int[]> _solutionOfAdversary;
 	public int _jcol, _jrow;
+	public double _objectiveValueOfPatroller = 0;
+	public double _objectiveValueOfAdversary = 0;
 	
 	public Model(int T, int Tp, int Ta, int L, int W, int ell, int w, int alpha){
 		_v = w*ell; _ell = ell; _w = w;
@@ -28,8 +30,6 @@ public class Model{
 		}
 		//random adversary action estimate
 		double [][][] tildeX = estimateTildeX();
-		//distance matrix
-		//double [][] c = getDistanceMatrixOfPatroller();
 		//model
 		GRBEnv env   = new GRBEnv("Patrol");
 		GRBModel model = new GRBModel(env);    
@@ -49,7 +49,11 @@ public class Model{
 			for(int i=0; i<_v; i++){
 				for(int j=0; j<_v; j++){
 					for(int t=0; t<_s; t++){
-						expr.addTerm(wn*zp[i][j][t]+ws*(tildeX[i][j][t]+tildeX[j][i][t]), x[i][j][t]);
+						expr.addTerm(wn*zp[i][j][t]+ws*(tildeX[i][j][t]+tildeX[j][i][t]+tildeX[j][j][t]), x[i][j][t]);
+						ArrayList<Integer> n = getNeighbors(j);
+						for(int k:n){
+							expr.addTerm(ws*tildeX[k][j][t], x[i][j][t]);
+						}
 					}
 				}
 		}
@@ -70,7 +74,8 @@ public class Model{
 		//starting from certain nodes		
 		GRBLinExpr expr2 = new GRBLinExpr();
 		for(int k: Kp){
-			for(int j=0; j<_v; j++){	
+			ArrayList<Integer> n = getNeighbors(k);
+			for(int j:n){	
 				expr2.addTerm(1.0, x[k][j][sp]);
 			}
 		}
@@ -123,20 +128,14 @@ public class Model{
 		//solve
 		model.optimize();
 		//solution
-		_solutionOfPatroller = new double[_v][_v][_s];
-		for(int i=0; i<_v; i++){
-			for(int j=0; j<_v; j++){
-				for(int t=0; t<_s; t++){
-					_solutionOfPatroller[i][j][t] = x[i][j][t].get(GRB.DoubleAttr.X);
-				}
-			}
-		}
-		//
+		_objectiveValueOfPatroller = model.get(GRB.DoubleAttr.ObjVal);
+		_solutionOfPatroller = new ArrayList<int[]>();
 		for(int t=0; t<_s; t++){
 			for(int i=0; i<_v; i++){
 				for(int j=0; j<_v; j++){
 					if(x[i][j][t].get(GRB.DoubleAttr.X)>0){
-						System.out.println(i+" "+j+" "+t);
+						int [] vector = new int[]{i,j,t};
+						_solutionOfPatroller.add(vector);
 					}
 				}
 			}
@@ -181,6 +180,10 @@ public class Model{
 					for(int j=0; j<_v; j++){
 						for(int t=0; t<_s; t++){
 							expr.addTerm(wr*za[i][j][t]-wc*(tildeX[i][j][t]+tildeX[j][i][t]), x[i][j][t]);
+							ArrayList<Integer> n = getNeighbors(j);
+							for(int k:n){
+								expr.addTerm(-wc*tildeX[k][j][t], x[i][j][t]);
+							}
 						}
 					}
 			}
@@ -201,7 +204,8 @@ public class Model{
 			//starting from certain nodes		
 			GRBLinExpr expr2 = new GRBLinExpr();
 			for(int k: Ka){
-				for(int j=0; j<_v; j++){	
+				ArrayList<Integer> n = getNeighbors(k);
+				for(int j:n){	
 					expr2.addTerm(1.0, x[k][j][sa]);
 				}
 			}
@@ -255,20 +259,14 @@ public class Model{
 			//solve
 			model.optimize();
 			//solution
-			_solutionOfAdversary = new double[_v][_v][_s];
-			for(int i=0; i<_v; i++){
-				for(int j=0; j<_v; j++){
-					for(int t=0; t<_s; t++){
-						_solutionOfAdversary[i][j][t] = x[i][j][t].get(GRB.DoubleAttr.X);
-					}
-				}
-			}
-			//
+			_objectiveValueOfAdversary = model.get(GRB.DoubleAttr.ObjVal);
+			_solutionOfAdversary = new ArrayList<int[]>();
 			for(int t=0; t<_s; t++){
 				for(int i=0; i<_v; i++){
 					for(int j=0; j<_v; j++){
 						if(x[i][j][t].get(GRB.DoubleAttr.X)>0){
-							System.out.println(i+" "+j+" "+t);
+							int [] vector = new int[]{i,j,t};
+							_solutionOfAdversary.add(vector);
 						}
 					}
 				}
@@ -281,51 +279,7 @@ public class Model{
 				e.printStackTrace();
 			}
 	}
-	
-	/*
-	public double[][] getDistanceMatrixOfPatroller(){
-		double [][] c = new double [_v][_v];		
-		for(int i=0; i<_v; i++){
-			if(i%_w!=0){c[i][i-1]=1;}
-			if(i%_w!=_jcol){c[i][i+1]=1;}
-			if(i<_w*_jrow){c[i][i+_w]=1;}
-			if(i>_jcol){c[i][i-_w]=1;}
-		}
-		for(int i=0; i<_v; i++){
-			for(int j=0; j<_v; j++){
-				if(c[i][j]!=1){
-					c[i][j]=-Double.MAX_VALUE;
-				}
-			}
-		}
-		return c;
-	}
-	
-	/*
-	public double[][] getDistanceMatrixOfAdversary(){
-		int jcol=_w-1; int jrow=_ell-1;
-		double [][] c = new double [_v][_v];		
-		for(int i=0; i<_v; i++){
-			if(i%_w!=0){c[i][i-1]=1;}
-			if(i%_w!=jcol){c[i][i+1]=1;}
-			if(i<_w*jrow){c[i][i+_w]=1;}
-			if(i>jcol){c[i][i-_w]=1;}
-		}
-		for(int i=0; i<_v; i++){
-			System.out.println();
-			for(int j=0; j<_v; j++){
-				if(c[i][j]!=1){
-					c[i][j]=-Double.MAX_VALUE;
-				}
-				if(i==j){
-					c[i][j]=1;
-				}
-				System.out.print(c[i][j]+"\t");
-			}
-		}
-		return c;
-	}
-	*/
+
 	public double[][][] estimateTildeX(){
 		Random rand = new Random(); 
 		double sum = 0;
@@ -356,6 +310,12 @@ public class Model{
 		if(v<_w*_jrow){neighbors.add(v+_w);}
 		if(v>_jcol){neighbors.add(v-_w);}
 		return neighbors;
+	}
+	
+	public void printOptimalPath(ArrayList<int[]> p){
+		for(int t=0; t<p.size(); t++){
+				System.out.println(p.get(t)[0]+" "+p.get(t)[1]+" "+p.get(t)[2]);
+		}
 	}
 
 }
