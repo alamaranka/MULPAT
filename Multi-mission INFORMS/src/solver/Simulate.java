@@ -2,11 +2,12 @@ package solver;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Random;
 
 public class Simulate {
 	
 	public static double numberOfRun = 7;
+	public static double interdictionValue = 1;
+	public static double noninterdictionCost = .2;
 
 	Solver _solver = new Solver();
 	double[][][] _tildeXPatroller = _solver._data.estimateTildeX();
@@ -26,10 +27,10 @@ public class Simulate {
 				if(interdictionOccured(patrollerPath, adversaryPath, m, n)!=null){
 					updateTildeYes(interdictionOccured(patrollerPath, adversaryPath, m, n));
 				}else{
-					updateTildeNo();
+					updateTildeNo(patrollerPath, adversaryPath);
 				}
 			}else {
-				updateTildeNo();
+				updateTildeNo(patrollerPath, adversaryPath);
 			}
 			//normalize matrices
 			normalizeTildeX(_tildeXPatroller);
@@ -39,12 +40,23 @@ public class Simulate {
 	}
 	
 	private void updateTildeYes (int [] interdiction){
-		_tildeXPatroller[interdiction[0]][interdiction[1]][interdiction[2]] += 1;
-		_tildeXAdversary[interdiction[0]][interdiction[1]][interdiction[2]] += 1;
+		_tildeXPatroller[interdiction[0]][interdiction[1]][interdiction[2]] += interdictionValue;
+		_tildeXAdversary[interdiction[0]][interdiction[1]][interdiction[2]] += interdictionValue;
 	}
 	
-	private void updateTildeNo (){
-		//
+	private void updateTildeNo (ArrayList<int[]> patrollerPath, ArrayList<int[]> adversaryPath){
+		for(int i=0; i<patrollerPath.size(); i++){
+			_tildeXPatroller[patrollerPath.get(i)[0]][patrollerPath.get(i)[1]][patrollerPath.get(i)[2]] -=noninterdictionCost;
+			double temp = _tildeXPatroller[patrollerPath.get(i)[0]][patrollerPath.get(i)[1]][patrollerPath.get(i)[2]];
+			if(temp<0){_tildeXPatroller[patrollerPath.get(i)[0]][patrollerPath.get(i)[1]][patrollerPath.get(i)[2]]=0;}
+		}
+		
+		for(int i=0; i<adversaryPath.size(); i++){
+			_tildeXAdversary[adversaryPath.get(i)[0]][adversaryPath.get(i)[1]][adversaryPath.get(i)[2]] -= noninterdictionCost;
+			double temp = _tildeXAdversary[adversaryPath.get(i)[0]][adversaryPath.get(i)[1]][adversaryPath.get(i)[2]];
+			if(temp<0){_tildeXAdversary[adversaryPath.get(i)[0]][adversaryPath.get(i)[1]][adversaryPath.get(i)[2]]=0;}
+		}
+		
 	}
 	
 	private int[] interdictionOccured(ArrayList<int[]> patrollerPath, ArrayList<int[]> adversaryPath, int m, int n){
@@ -97,7 +109,21 @@ public class Simulate {
 	}
 	
 	public void normalizeTildeX(double [][][] tildeX){
-		
+		double sum =0;
+		for(int i=0; i<_solver._model._v; i++){
+			for(int j=0; j<_solver._model._v; j++){
+				for(int t=0; t<_solver._model._s; t++){
+					sum += tildeX[i][j][t];
+				}
+			}
+		}
+		for(int i=0; i<_solver._model._v; i++){
+			for(int j=0; j<_solver._model._v; j++){
+				for(int t=0; t<_solver._model._s; t++){
+					tildeX[i][j][t] /=sum;
+				}
+			}
+		}
 	}
 
 
