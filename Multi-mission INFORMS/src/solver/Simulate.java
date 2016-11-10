@@ -1,5 +1,8 @@
 package solver;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -16,7 +19,7 @@ public class Simulate {
 	double[][][] _tildeXPatroller = _solver._data.estimateTildeX();
 	double[][][] _tildeXAdversary = _solver._data.estimateTildeX();
 	
-	public void run(){
+	public void run() throws FileNotFoundException{
 		int m = _solver._model._m; int n = _solver._model._n;
 		for(int i=0; i<numberOfRun; i++){
 			//solve
@@ -113,7 +116,7 @@ public class Simulate {
 		return !(p1>a2 | p2>a1);	
 	}
 	
-	public void normalizeTildeX(double [][][] tildeX){
+	private void normalizeTildeX(double [][][] tildeX){
 		double sum =0;
 		for(int i=0; i<_solver._model._v; i++){
 			for(int j=0; j<_solver._model._v; j++){
@@ -131,8 +134,28 @@ public class Simulate {
 		}
 	}
 
-	private void print(){
+	private void print() throws FileNotFoundException{
+		PrintStream out = new PrintStream(new FileOutputStream("results.txt"));
+		System.setOut(out);
+		////////////////
+		System.out.println("Patroller's Path:");
+		System.out.println("------------------");
+		for(int r=0; r<numberOfRun; r++){
+			for(int i=0; i<_pathsOfPatroller.size(); i++){
+				System.out.println(_pathsOfPatroller.get(r).get(i)[0]+" "+_pathsOfPatroller.get(r).get(i)[1]+" "+_pathsOfPatroller.get(r).get(i)[2]);
+			}
+		}
+		System.out.println();
+		System.out.println("Adversary's Path:");
+		System.out.println("------------------");
+		for(int r=0; r<numberOfRun; r++){
+			for(int i=0; i<_pathsOfAdversary.size(); i++){
+			System.out.println(_pathsOfAdversary.get(r).get(i)[0]+" "+_pathsOfAdversary.get(r).get(i)[1]+" "+_pathsOfAdversary.get(r).get(i)[2]);
+			}
+		}
+		System.out.println();
 		System.out.println("Interdictions occurred:");
+		System.out.println("------------------");
 		if(!_interdictions.isEmpty())
 			for(int i=0; i<_interdictions.size(); i++){
 			System.out.println(_interdictions.get(i)[0]+" "+_interdictions.get(i)[1]+" "+_interdictions.get(i)[2]);
