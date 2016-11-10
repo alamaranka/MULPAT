@@ -21,13 +21,16 @@ public class Data {
 		double diff = (probUpper - probLower)/(_w - 1);
 		for (int node=0; node < _v; node++) {
 			if (node/_w == 0){
-				probMat[node] = probLower;	
+				probMat[node] = probLower;
+				System.out.println(probMat[node]);
 			}
 			else if (node/_w < _w-1){
-				probMat[node] = probMat[node-1] + diff;
+				probMat[node] = probMat[node-_ell] + diff;
+				System.out.println(probMat[node]);
 			}
 			else {
 				probMat[node] = probUpper;
+				System.out.println(probMat[node]);
 			}
 		}
 		// calculating average probabilities
