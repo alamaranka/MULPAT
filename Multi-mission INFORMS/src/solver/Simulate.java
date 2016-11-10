@@ -8,9 +8,9 @@ import java.util.Iterator;
 
 public class Simulate {
 	
-	public static double numberOfRun = 7;
-	public static double interdictionValue = .1;
-	public static double noninterdictionCost = .01;
+	public static double numberOfRun = 1;
+	public static double interdictionValue = .5;
+	public static double noninterdictionCost = .5;
 	public ArrayList<ArrayList<int[]>> _pathsOfPatroller = new ArrayList<ArrayList<int[]>>();
 	public ArrayList<ArrayList<int[]>> _pathsOfAdversary = new ArrayList<ArrayList<int[]>>();
 	public ArrayList<int[]> _interdictions = new ArrayList<int[]>();
@@ -44,7 +44,7 @@ public class Simulate {
 			normalizeTildeX(_tildeXAdversary);
 			//go Step 2!
 		}		
-		print();
+		print(m, n);
 	}
 	
 	private void updateTildeYes (int [] interdiction){
@@ -134,14 +134,15 @@ public class Simulate {
 		}
 	}
 
-	private void print() throws FileNotFoundException{
+	private void print(int m, int n) throws FileNotFoundException{
 		PrintStream out = new PrintStream(new FileOutputStream("results.txt"));
 		System.setOut(out);
 		////////////////
 		System.out.println("Patroller's Path:");
 		System.out.println("------------------");
 		for(int r=0; r<numberOfRun; r++){
-			for(int i=0; i<_pathsOfPatroller.size(); i++){
+			System.out.println("Simulation"+r+":");
+			for(int i=0; i<m+1; i++){
 				System.out.println(_pathsOfPatroller.get(r).get(i)[0]+" "+_pathsOfPatroller.get(r).get(i)[1]+" "+_pathsOfPatroller.get(r).get(i)[2]);
 			}
 		}
@@ -149,8 +150,9 @@ public class Simulate {
 		System.out.println("Adversary's Path:");
 		System.out.println("------------------");
 		for(int r=0; r<numberOfRun; r++){
-			for(int i=0; i<_pathsOfAdversary.size(); i++){
-			System.out.println(_pathsOfAdversary.get(r).get(i)[0]+" "+_pathsOfAdversary.get(r).get(i)[1]+" "+_pathsOfAdversary.get(r).get(i)[2]);
+			System.out.println("Simulation"+r+":");
+			for(int i=0; i<n+1; i++){
+				System.out.println(_pathsOfAdversary.get(r).get(i)[0]+" "+_pathsOfAdversary.get(r).get(i)[1]+" "+_pathsOfAdversary.get(r).get(i)[2]);
 			}
 		}
 		System.out.println();

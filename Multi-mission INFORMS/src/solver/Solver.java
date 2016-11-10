@@ -5,16 +5,16 @@ import java.util.ArrayList;
 public class Solver {
 
 	public static int T = 12;
-	public static int Tp = 4;
-	public static int Ta = 2;
+	public static int Tp = 6;
+	public static int Ta = 3;
 	public static int W = 50;
 	public static int L = 50;
 	public static int ell = 5;
 	public static int w = 5;
 	public static int alpha = 25;
-	public static double wn = 0.25;
+	public static double wn = 1;
 	public static double ws = 1-wn;
-	public static double wr = .25;
+	public static double wr = .5;
 	public static double wc = 1-wr;
 	//
 	private ArrayList<int[]> _optimalPathOfPatroller;

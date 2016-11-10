@@ -1,6 +1,5 @@
 package model;
 import java.util.ArrayList;
-import java.util.Random;
 
 import gurobi.*;
 
@@ -124,6 +123,7 @@ public class Model{
 		}
 		
 		//solve
+		model.getEnv().set(GRB.DoubleParam.MIPGap, 0.05);
 		model.optimize();
 		//solution
 		_objectiveValueOfPatroller = model.get(GRB.DoubleAttr.ObjVal);
@@ -251,6 +251,7 @@ public class Model{
 			}
 			
 			//solve
+			model.getEnv().set(GRB.DoubleParam.MIPGap, 0.05);
 			model.optimize();
 			//solution
 			_objectiveValueOfAdversary = model.get(GRB.DoubleAttr.ObjVal);
