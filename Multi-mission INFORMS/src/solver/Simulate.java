@@ -31,12 +31,16 @@ public class Simulate {
 			}else {
 				updateTildeNo();
 			}
+			//normalize matrices
+			normalizeTildeX(_tildeXPatroller);
+			normalizeTildeX(_tildeXAdversary);
 			//go Step 2!
 		}		
 	}
 	
 	private void updateTildeYes (int [] interdiction){
-		//
+		_tildeXPatroller[interdiction[0]][interdiction[1]][interdiction[2]] += 1;
+		_tildeXAdversary[interdiction[0]][interdiction[1]][interdiction[2]] += 1;
 	}
 	
 	private void updateTildeNo (){
@@ -56,7 +60,7 @@ public class Simulate {
 					interdiction = patrollerPath.get(t);
 					return interdiction;
 				}
-				ArrayList<Integer> aL = getNeighbors(patrollerPath.get(t)[1]);
+				ArrayList<Integer> aL = _solver._model.getNeighbors(patrollerPath.get(t)[1]);
 				Iterator<Integer> it = aL.iterator();
 				while (it.hasNext()){
 					if (patrollerPath.get(t)[1]==adversaryPath.get(t)[1] & adversaryPath.get(t)[0] == it.next()){
@@ -75,7 +79,7 @@ public class Simulate {
 						interdiction = patrollerPath.get(t);
 						return interdiction;
 				}
-				ArrayList<Integer> aL = getNeighbors(patrollerPath.get(t)[1]);
+				ArrayList<Integer> aL = _solver._model.getNeighbors(patrollerPath.get(t)[1]);
 				Iterator<Integer> it = aL.iterator();
 				while (it.hasNext()){
 					if (patrollerPath.get(t)[1]==adversaryPath.get(t)[1] & adversaryPath.get(t)[0] == it.next()){
@@ -85,10 +89,16 @@ public class Simulate {
 				}
 			}
 		}
+		return null;
 	}
 	
-		private boolean necessaryToCheckInterdiction(int p1, int p2, int a1, int a2){
+	private boolean necessaryToCheckInterdiction(int p1, int p2, int a1, int a2){
 		return !(p1>a2 | p2>a1);	
 	}
+	
+	public void normalizeTildeX(double [][][] tildeX){
+		
+	}
+
 
 }
