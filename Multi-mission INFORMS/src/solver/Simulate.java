@@ -6,8 +6,11 @@ import java.util.Iterator;
 public class Simulate {
 	
 	public static double numberOfRun = 7;
-	public static double interdictionValue = 1;
-	public static double noninterdictionCost = .2;
+	public static double interdictionValue = .1;
+	public static double noninterdictionCost = .01;
+	public ArrayList<ArrayList<int[]>> _pathsOfPatroller = new ArrayList<ArrayList<int[]>>();
+	public ArrayList<ArrayList<int[]>> _pathsOfAdversary = new ArrayList<ArrayList<int[]>>();
+	public ArrayList<int[]> _interdictions = new ArrayList<int[]>();
 
 	Solver _solver = new Solver();
 	double[][][] _tildeXPatroller = _solver._data.estimateTildeX();
@@ -18,13 +21,14 @@ public class Simulate {
 		for(int i=0; i<numberOfRun; i++){
 			//solve
 			_solver.solve(_tildeXPatroller, _tildeXAdversary);
-			ArrayList<int[]> patrollerPath = _solver.getPatrollerPath();
-			ArrayList<int[]> adversaryPath = _solver.getAdversaryPath();
+			ArrayList<int[]> patrollerPath = _solver.getPatrollerPath(); _pathsOfPatroller.add(patrollerPath);
+			ArrayList<int[]> adversaryPath = _solver.getAdversaryPath(); _pathsOfAdversary.add(adversaryPath);
 			//interdiction?
 			int p1 = patrollerPath.get(0)[2]; int p2 = patrollerPath.get(m)[2]; 
 			int a1 = adversaryPath.get(0)[2]; int a2 = adversaryPath.get(n)[2]; 
 			if(necessaryToCheckInterdiction(p1, p2, a1, a2)){
 				if(interdictionOccured(patrollerPath, adversaryPath, m, n)!=null){
+					_interdictions.add(interdictionOccured(patrollerPath, adversaryPath, m, n));
 					updateTildeYes(interdictionOccured(patrollerPath, adversaryPath, m, n));
 				}else{
 					updateTildeNo(patrollerPath, adversaryPath);
@@ -37,6 +41,7 @@ public class Simulate {
 			normalizeTildeX(_tildeXAdversary);
 			//go Step 2!
 		}		
+		print();
 	}
 	
 	private void updateTildeYes (int [] interdiction){
@@ -126,5 +131,12 @@ public class Simulate {
 		}
 	}
 
-
+	private void print(){
+		System.out.println("Interdictions occurred:");
+		if(!_interdictions.isEmpty())
+			for(int i=0; i<_interdictions.size(); i++){
+			System.out.println(_interdictions.get(i)[0]+" "+_interdictions.get(i)[1]+" "+_interdictions.get(i)[2]);
+			}
+		}
+	
 }
