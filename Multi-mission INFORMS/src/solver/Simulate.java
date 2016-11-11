@@ -8,16 +8,16 @@ import java.util.Iterator;
 
 public class Simulate {
 	
-	public static double numberOfRun = 1;
+	public static double numberOfRun = 300;
 	public static double interdictionValue = .5;
-	public static double noninterdictionCost = .5;
+	public static double noninterdictionCost = .25;
 	public ArrayList<ArrayList<int[]>> _pathsOfPatroller = new ArrayList<ArrayList<int[]>>();
 	public ArrayList<ArrayList<int[]>> _pathsOfAdversary = new ArrayList<ArrayList<int[]>>();
 	public ArrayList<int[]> _interdictions = new ArrayList<int[]>();
 
 	Solver _solver = new Solver();
-	double[][][] _tildeXPatroller = _solver._data.estimateTildeX();
-	double[][][] _tildeXAdversary = _solver._data.estimateTildeX();
+	double[][][] _tildeXPatroller = _solver._data.getZA();
+	double[][][] _tildeXAdversary = _solver._data.getZP();
 	
 	public void run() throws FileNotFoundException{
 		int m = _solver._model._m; int n = _solver._model._n;
@@ -141,7 +141,7 @@ public class Simulate {
 		System.out.println("Patroller's Path:");
 		System.out.println("------------------");
 		for(int r=0; r<numberOfRun; r++){
-			System.out.println("Simulation"+r+":");
+			System.out.println("Simulation"+r+1+":");
 			for(int i=0; i<m+1; i++){
 				System.out.println(_pathsOfPatroller.get(r).get(i)[0]+" "+_pathsOfPatroller.get(r).get(i)[1]+" "+_pathsOfPatroller.get(r).get(i)[2]);
 			}
@@ -150,7 +150,7 @@ public class Simulate {
 		System.out.println("Adversary's Path:");
 		System.out.println("------------------");
 		for(int r=0; r<numberOfRun; r++){
-			System.out.println("Simulation"+r+":");
+			System.out.println("Simulation"+r+1+":");
 			for(int i=0; i<n+1; i++){
 				System.out.println(_pathsOfAdversary.get(r).get(i)[0]+" "+_pathsOfAdversary.get(r).get(i)[1]+" "+_pathsOfAdversary.get(r).get(i)[2]);
 			}
