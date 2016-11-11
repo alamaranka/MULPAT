@@ -12,9 +12,9 @@ public class Solver {
 	public static int ell = 5;
 	public static int w = 5;
 	public static int alpha = 25;
-	public static double wn = 0.25;
+	public static double wn = 0.1;
 	public static double ws = 1-wn;
-	public static double wr = .25;
+	public static double wr = .9;
 	public static double wc = 1-wr;
 	//
 	private ArrayList<int[]> _optimalPathOfPatroller;
