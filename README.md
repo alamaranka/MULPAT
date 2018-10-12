@@ -1,0 +1,1 @@
+This project aims to solve a binary integer programming that promises the best patrolling routes for the United States Coast Guard in the Gulf of Mexico for preventing illegal activities such as illegal fishery.
